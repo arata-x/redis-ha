@@ -1,0 +1,51 @@
+# Default configuration
+spring:
+  application:
+    name: redis-reactive-demo
+  profiles:
+    active: replica
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    dev.aratax.data.redis: DEBUG
+    org.springframework.data.redis: DEBUG
+    io.lettuce.core: INFO
+
+---
+# Master-replica Redis Profile
+spring:
+  config:
+    activate:
+      on-profile: replica
+  data:
+    redis:
+      master:
+        host: localhost
+        port: 6379
+      replicas:
+        - host: localhost
+          port: 6380
+          pssword: Passw0rd!
+        - host: localhost
+          port: 6381
+          password: Passw0rd!
+      read-from: anyReplica  # Options: MASTER, MASTER_PREFERRED, REPLICA_PREFERRED..
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 5
+          min-idle: 1
+
+---

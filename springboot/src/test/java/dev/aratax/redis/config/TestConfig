@@ -1,0 +1,5 @@
+
+@TestConfiguration
+public class TestConfig {
+
+}
