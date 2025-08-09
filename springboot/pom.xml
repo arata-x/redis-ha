@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <groupId>io.codrox.demo</groupId>
+    <groupId>dev.aratax</groupId>
     <artifactId>redis-reactive-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>redis-reactive-demo</name>
-    <description>Spring Boot Redis Reactive Demo with Multiple Configurations</description>
+    <description>Spring Boot Redis Reactive Demo</description>
     
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
