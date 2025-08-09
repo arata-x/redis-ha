@@ -109,7 +109,6 @@ mvn clean spring-boot:run
 
 -   **Application**: `http://localhost:8080`
 -   **Swagger UI**: `http://localhost:8080/swagger-ui.html`
--   **OpenAPI Spec**: `http://localhost:8080/v3/api-docs`
 -   **Health Check**: `http://localhost:8080/actuator/health`
 
 ## 🔧 Management and Cleanup
@@ -198,17 +197,13 @@ Use this script to stop and remove the Docker containers.
 **A:** The active Spring profile in your application does not match the running Docker environment.
 
 **Solutions:**
-1.  Check the active profile endpoint:
-    ```bash
-    curl http://localhost:8080/api/redis/config
-    ```
-2.  Set the correct profile in `springboot/src/main/resources/application.yml`:
+1.  Set the correct profile in `springboot/src/main/resources/application.yml`:
     ```yaml
     spring:
       profiles:
         active: replica # or another relevant profile
     ```
-3.  Restart the application.
+2.  Restart the application.
 
 ### Script Issues
 
