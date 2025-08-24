@@ -1,14 +1,14 @@
-# Redis Replication Demo with Spring Boot Reactive
+# Redis High Availability Demo with Spring Boot Reactive
 
 ## 📖 Description
 
 ### What is this project?
-This is a Spring Boot application that demonstrates Redis replication integration using reactive programming patterns. The project showcases how to build scalable, non-blocking applications with Redis as the data store, supporting standard master-replica, chained-replica, and Redis Sentinel deployment configurations.
+This is a Spring Boot application that demonstrates Redis high availability integration using reactive programming patterns. The project showcases how to build scalable, non-blocking applications with Redis as the data store, supporting standard master-replica, chained-replica, and Redis Sentinel deployment configurations.
 
 
 ### Why was this built?
-- **Educational Purpose**: Demonstrate best practices for Redis replication in modern Spring Boot applications.
-- **Production Readiness**: Show how to handle different replication configurations.
+- **Educational Purpose**: Demonstrate best practices for Redis high availability in modern Spring Boot applications.
+- **Production Readiness**: Show how to handle different high availability configurations.
 - **Developer Experience**: Provide comprehensive tooling, testing, and documentation for efficient development.
 - **Reactive Programming**: Illustrate the benefits of non-blocking, reactive programming with Redis.
 - **Scalability**: Demonstrate how to build applications that can scale read operations.
@@ -33,7 +33,7 @@ This is a Spring Boot application that demonstrates Redis replication integratio
 
 ## 🚀 Features
 
-- **Multiple Redis Replication Configurations**: Master-Replica, Chained-Replica, and Redis Sentinel
+- **Multiple Redis High Availability Configurations**: Master-Replica, Chained-Replica, and Redis Sentinel
 
 - **Reactive Programming**: Built with Spring WebFlux and reactive Redis templates
 - **OpenAPI Documentation**: Complete API documentation with Swagger UI
