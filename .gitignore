@@ -32,6 +32,9 @@ dump.rdb
 coverage/
 *.lcov
 
+# Backup files
+bak/
+
 # Build output
 dist/
 bin/

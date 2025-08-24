@@ -3,7 +3,8 @@
 ## 📖 Description
 
 ### What is this project?
-This is a Spring Boot application that demonstrates Redis replication integration using reactive programming patterns. The project showcases how to build scalable, non-blocking applications with Redis as the data store, supporting both standard master-replica and chained-replica deployment configurations.
+This is a Spring Boot application that demonstrates Redis replication integration using reactive programming patterns. The project showcases how to build scalable, non-blocking applications with Redis as the data store, supporting standard master-replica, chained-replica, and Redis Sentinel deployment configurations.
+
 
 ### Why was this built?
 - **Educational Purpose**: Demonstrate best practices for Redis replication in modern Spring Boot applications.
@@ -26,12 +27,14 @@ This is a Spring Boot application that demonstrates Redis replication integratio
 - **CPU**: Multi-core processor recommended
 
 ### Network Requirements
-- **Ports**: 8080, 6379-6381 should be available
+- **Ports**: 8080, 6379-6381, 26379-26381 should be available
+
 - **Internet**: Required for Maven dependencies and Docker images
 
 ## 🚀 Features
 
-- **Multiple Redis Replication Configurations**: Master-Replica and Chained-Replica
+- **Multiple Redis Replication Configurations**: Master-Replica, Chained-Replica, and Redis Sentinel
+
 - **Reactive Programming**: Built with Spring WebFlux and reactive Redis templates
 - **OpenAPI Documentation**: Complete API documentation with Swagger UI
 - **Comprehensive Testing**: Integration tests with request/response logging
@@ -83,10 +86,12 @@ Once the Redis containers are running, build and run the Spring Boot application
 cd springboot
 
 # Set the active profile in `src/main/resources/application.yml`
-# to match your chosen Docker configuration (e.g., 'replica').
+# to match your chosen Docker configuration (e.g., 'replica', 'chained-replica', 'sentinel').
+
 
 # Clean, compile, and run the application
-mvn clean spring-boot:run
+mvn clean spring-boot:run -P replica
+mvn clean spring-boot:run -P sentinel
 ```
 
 ### Step 4: Verify Installation
@@ -124,6 +129,8 @@ An interactive script to start a Redis environment.
 **Options:**
 - **Master-Replica**: Starts one master and its direct replicas.
 - **Chained-Replica**: Starts a master with a replica that has its own replica.
+- **Redis Sentinel**: Starts a master, two replicas, and three sentinels for high availability.
+
 
 ### Cleanup Script (`script/redis-cleanup-docker.sh`)
 
@@ -201,7 +208,8 @@ Use this script to stop and remove the Docker containers.
     ```yaml
     spring:
       profiles:
-        active: replica # or another relevant profile
+        active: replica # or 'sentinel', 'chained-replica'
+
     ```
 2.  Restart the application.
 
@@ -275,6 +283,13 @@ mvn test
     -   Demonstrates cascading replication.
     -   Best for: Advanced replication scenarios.
 
+3.  **Redis Sentinel** (`docker/redis-sentinel/`)
+    -   1 Master + 2 Replicas + 3 Sentinels.
+    -   Provides high availability with automatic failover.
+    -   Ports: 6379 (master), 6380-6381 (replicas), 26379-26381 (sentinels).
+    -   Best for: Production-like environments requiring high availability.
+
+
 ## 🔧 Configuration
 
 ### Application Profiles
@@ -284,7 +299,8 @@ Configure the Redis connection by setting the active Spring profile in `springbo
 ```yaml
 spring:
   profiles:
-    active: replica  # This should match the desired Redis setup
+    active: replica  # This should match the desired Redis setup (e.g., 'replica', 'chained-replica', 'sentinel')
+
 ```
 
 The application automatically configures its Redis connection based on the active profile.

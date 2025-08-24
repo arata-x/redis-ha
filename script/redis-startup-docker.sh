@@ -5,6 +5,7 @@ show_menu() {
     echo "Please choose a Redis configuration to start:"
     echo "1) redis-replica"
     echo "2) redis-replica-chained"
+    echo "3) redis-sentinel"
     echo "q) Quit"
 }
 
@@ -22,6 +23,11 @@ while true; do
         2)
             echo "Starting redis-replica-chained..."
             docker-compose -f "../docker/redis-replica-chained/docker-compose.yml" up -d
+            break
+            ;;
+        3)
+            echo "Starting redis-sentinel..."
+            docker-compose -f "../docker/redis-sentinel/docker-compose.yml" up -d
             break
             ;;
         q)

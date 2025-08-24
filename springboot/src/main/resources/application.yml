@@ -3,7 +3,7 @@ spring:
   application:
     name: redis-reactive-demo
   profiles:
-    active: replica
+    default: replica
 
 server:
   port: 8080
@@ -19,12 +19,12 @@ management:
 
 logging:
   level:
-    dev.aratax.data.redis: DEBUG
+    dev.aratax.redis: DEBUG
     org.springframework.data.redis: DEBUG
     io.lettuce.core: INFO
 
 ---
-# Master-replica Redis Profile
+# Redis Master-replica Profile
 spring:
   config:
     activate:
@@ -47,5 +47,24 @@ spring:
           max-active: 10
           max-idle: 5
           min-idle: 1
-
+    
 ---
+# Redis Sentinel Profile
+spring:
+  config:
+    activate:
+      on-profile: sentinel
+
+  data:
+    redis:
+      sentinel:
+        master: mymaster        # Must match sentinel.conf monitor name
+        nodes:
+          - localhost:26379
+          - localhost:26380
+          - localhost:26381
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 5
+          min-idle: 1

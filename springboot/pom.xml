@@ -13,7 +13,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <java.version>21</java.version>
-        <spring-boot.version>3.5.4</spring-boot.version>
+        <spring-boot.version>3.5.5</spring-boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
@@ -95,7 +95,27 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    
+
+    <profiles>
+        <!-- Replica Profile -->
+        <profile>
+            <id>replica</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring-boot.run.profiles>replica</spring-boot.run.profiles>
+            </properties>
+        </profile>
+        <!-- Sentinel Profile -->
+        <profile>
+            <id>sentinel</id>
+            <properties>
+                <spring-boot.run.profiles>sentinel</spring-boot.run.profiles>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
